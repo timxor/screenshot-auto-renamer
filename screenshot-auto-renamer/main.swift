@@ -4,25 +4,16 @@
 //
 //  Created by Tim Siwula on 4/5/25.
 //
-//  build binary file located at:
-//      "/Users/timsiwula/Library/Developer/Xcode/DerivedData/screenshot-auto-renamer-diiiedxlicyypehgsezlmnmzhwjs/Build/Products/Debug/screenshot-auto-renamer"
+//  Run command: swift main.swift ~/Downloads
 //
-//   copy it:
-//      cp /Users/timsiwula/Library/Developer/Xcode/DerivedData/screenshot-auto-renamer-diiiedxlicyypehgsezlmnmzhwjs/Build/Products/Debug/screenshot-auto-renamer .
-//
-//   run it:
-//      ./screenshot-auto-renamer ~/Downloads
-//
-//
-
-//
-//  main.swift
-//  screenshot-auto-renamer
 
 import Foundation
 import CoreServices
 
-print("screenshot-auto-renamer started")
+print("screenshot-auto-renamer started watching directory = {arg1=~/Downloads}")
+
+// Track detected paths
+var seenPaths = Set<String>()
 
 func startWatching(path: String) {
     let pathsToWatch = [path] as CFArray
@@ -33,6 +24,15 @@ func startWatching(path: String) {
         for i in 0..<numEvents {
             let cPath = paths[i]
             if let pathString = String(validatingUTF8: cPath) {
+                // Skip this path if we've already seen it
+                if seenPaths.contains(pathString) {
+                    continue
+                }
+
+                // Add the path to the set to mark it as processed
+                seenPaths.insert(pathString)
+
+                print("Detected file: \(pathString)")
                 if pathString.hasSuffix(".png") && pathString.contains("Screen Shot") {
                     print("📸 Screenshot detected: \(pathString)")
                     fflush(stdout)
@@ -60,7 +60,7 @@ func startWatching(path: String) {
     FSEventStreamSetDispatchQueue(stream, queue)
     FSEventStreamStart(stream)
 
-    dispatchMain() // Keeps the CLI alive
+    dispatchMain() // Keeps the program running
 }
 
 if CommandLine.arguments.count < 2 {
