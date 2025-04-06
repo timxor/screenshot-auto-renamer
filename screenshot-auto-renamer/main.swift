@@ -4,18 +4,23 @@
 //
 //  Created by Tim Siwula on 4/5/25.
 //
-//  Run command: swift main.swift ~/Downloads
+//  run: swift main.swift ~/Downloads
 //
-
 import Foundation
 import CoreServices
 
-print("screenshot-auto-renamer started watching directory = {arg1=~/Downloads}")
+print("screenshot-auto-renamer started")
 
-// Track detected paths
+// Global set to track already-seen paths
 var seenPaths = Set<String>()
 
+// Global watch path to avoid closure capture (required by FSEventStreamCallback)
+var watchPath: String = ""
+
 func startWatching(path: String) {
+    // Set global so it can be accessed in the C-compatible callback
+    watchPath = path
+
     let pathsToWatch = [path] as CFArray
 
     let callback: FSEventStreamCallback = { _, _, numEvents, eventPathsRaw, _, _ in
@@ -24,12 +29,15 @@ func startWatching(path: String) {
         for i in 0..<numEvents {
             let cPath = paths[i]
             if let pathString = String(validatingUTF8: cPath) {
-                // Skip this path if we've already seen it
+                // Skip hidden (dot-prefixed) files
+                if pathString.hasPrefix(watchPath + "/.") {
+                    continue
+                }
+
                 if seenPaths.contains(pathString) {
                     continue
                 }
 
-                // Add the path to the set to mark it as processed
                 seenPaths.insert(pathString)
 
                 print("Detected file: \(pathString)")
@@ -60,7 +68,7 @@ func startWatching(path: String) {
     FSEventStreamSetDispatchQueue(stream, queue)
     FSEventStreamStart(stream)
 
-    dispatchMain() // Keeps the program running
+    dispatchMain() // Keep the CLI alive
 }
 
 if CommandLine.arguments.count < 2 {
@@ -68,5 +76,5 @@ if CommandLine.arguments.count < 2 {
     exit(1)
 }
 
-let watchPath = CommandLine.arguments[1]
-startWatching(path: watchPath)
+let inputPath = CommandLine.arguments[1]
+startWatching(path: inputPath)
