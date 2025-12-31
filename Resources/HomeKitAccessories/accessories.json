@@ -1,0 +1,141 @@
+{
+  "version": "1.0",
+  "description": "HomeKit accessory configuration for Screenshot Auto Renamer",
+  "accessories": [
+    {
+      "id": "screenshot-trigger-001",
+      "name": "Screenshot Trigger Switch",
+      "category": "SWITCH",
+      "manufacturer": "Screenshot Auto Renamer",
+      "model": "SAR-Switch-1.0",
+      "serialNumber": "SAR-001",
+      "firmwareVersion": "1.0.0",
+      "services": [
+        {
+          "type": "Switch",
+          "characteristics": [
+            {
+              "type": "On",
+              "description": "Trigger screenshot capture",
+              "permissions": ["read", "write", "notify"],
+              "format": "bool",
+              "defaultValue": false
+            },
+            {
+              "type": "Name",
+              "description": "Accessory name",
+              "permissions": ["read"],
+              "format": "string",
+              "defaultValue": "Screenshot Trigger"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "screenshot-sensor-001",
+      "name": "Screenshot Activity Sensor",
+      "category": "SENSOR",
+      "manufacturer": "Screenshot Auto Renamer",
+      "model": "SAR-Sensor-1.0",
+      "serialNumber": "SAR-002",
+      "firmwareVersion": "1.0.0",
+      "services": [
+        {
+          "type": "MotionSensor",
+          "characteristics": [
+            {
+              "type": "MotionDetected",
+              "description": "Screenshot activity detected",
+              "permissions": ["read", "notify"],
+              "format": "bool",
+              "defaultValue": false
+            },
+            {
+              "type": "StatusActive",
+              "description": "Sensor status",
+              "permissions": ["read", "notify"],
+              "format": "bool",
+              "defaultValue": true
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "name": "Work Mode",
+      "description": "Activate work-related screenshot settings",
+      "actions": [
+        {
+          "accessoryId": "screenshot-trigger-001",
+          "serviceType": "Switch",
+          "characteristicType": "On",
+          "value": true
+        }
+      ]
+    },
+    {
+      "name": "Personal Mode",
+      "description": "Switch to personal screenshot settings",
+      "actions": [
+        {
+          "accessoryId": "screenshot-trigger-001",
+          "serviceType": "Switch",
+          "characteristicType": "On",
+          "value": false
+        }
+      ]
+    }
+  ],
+  "automations": [
+    {
+      "name": "Morning Screenshot Setup",
+      "trigger": {
+        "type": "time",
+        "time": "09:00",
+        "days": ["monday", "tuesday", "wednesday", "thursday", "friday"]
+      },
+      "actions": [
+        {
+          "accessoryId": "screenshot-trigger-001",
+          "serviceType": "Switch",
+          "characteristicType": "On",
+          "value": true
+        }
+      ]
+    },
+    {
+      "name": "Evening Disable",
+      "trigger": {
+        "type": "time",
+        "time": "18:00",
+        "days": ["monday", "tuesday", "wednesday", "thursday", "friday"]
+      },
+      "actions": [
+        {
+          "accessoryId": "screenshot-trigger-001",
+          "serviceType": "Switch",
+          "characteristicType": "On",
+          "value": false
+        }
+      ]
+    },
+    {
+      "name": "Location-Based Screenshot",
+      "trigger": {
+        "type": "location",
+        "event": "arrive"
+      },
+      "actions": [
+        {
+          "accessoryId": "screenshot-sensor-001",
+          "serviceType": "MotionSensor",
+          "characteristicType": "StatusActive",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

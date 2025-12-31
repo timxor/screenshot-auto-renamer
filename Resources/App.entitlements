@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- HomeKit Capability -->
+    <key>com.apple.developer.homekit</key>
+    <true/>
+    
+    <!-- App Sandbox (required for macOS apps) -->
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+    
+    <!-- Network Access (required for HomeKit communication) -->
+    <key>com.apple.security.network.client</key>
+    <true/>
+    
+    <!-- Network Server (if implementing HomeKit accessories) -->
+    <key>com.apple.security.network.server</key>
+    <true/>
+    
+    <!-- Bluetooth (required for Bluetooth LE HomeKit accessories) -->
+    <key>com.apple.security.device.bluetooth</key>
+    <true/>
+    
+    <!-- Files Access (for screenshot saving) -->
+    <key>com.apple.security.files.user-selected.read-write</key>
+    <true/>
+    
+    <!-- Pictures Folder Access -->
+    <key>com.apple.security.assets.pictures.read-write</key>
+    <true/>
+</dict>
+</plist>

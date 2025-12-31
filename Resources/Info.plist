@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Bundle Information -->
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    
+    <key>CFBundleName</key>
+    <string>Screenshot Auto Renamer</string>
+    
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    
+    <!-- Privacy Permissions -->
+    
+    <!-- HomeKit Usage Description (REQUIRED for HomeKit) -->
+    <key>NSHomeKitUsageDescription</key>
+    <string>This app uses HomeKit to automate screenshot renaming based on your home automation setup. It can trigger screenshots based on HomeKit events and name them according to room locations.</string>
+    
+    <!-- Camera Usage (if taking actual screenshots) -->
+    <key>NSCameraUsageDescription</key>
+    <string>This app captures screenshots of your screen to automatically rename them with descriptive names.</string>
+    
+    <!-- Desktop Folder Access (macOS) -->
+    <key>NSDesktopFolderUsageDescription</key>
+    <string>This app needs access to save renamed screenshots to your Desktop.</string>
+    
+    <!-- Documents Folder Access (macOS) -->
+    <key>NSDocumentsFolderUsageDescription</key>
+    <string>This app needs access to save renamed screenshots to your Documents folder.</string>
+    
+    <!-- Downloads Folder Access (macOS) -->
+    <key>NSDownloadsFolderUsageDescription</key>
+    <string>This app needs access to organize screenshots in your Downloads folder.</string>
+    
+    <!-- Pictures Folder Access (macOS) -->
+    <key>NSPicturesFolderUsageDescription</key>
+    <string>This app saves and organizes screenshots in your Pictures folder.</string>
+    
+    <!-- System Extension (if monitoring keyboard shortcuts) -->
+    <key>NSAppleEventsUsageDescription</key>
+    <string>This app monitors keyboard shortcuts to detect when you take a screenshot.</string>
+    
+    <!-- Accessibility (if monitoring system events) -->
+    <key>NSAppleScriptUsageDescription</key>
+    <string>This app needs to monitor system events to detect screenshot captures.</string>
+    
+    <!-- App Capabilities -->
+    <key>LSMinimumSystemVersion</key>
+    <string>10.15</string>
+    
+    <!-- Background Modes (if running in background) -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
+    
+    <!-- Supported Platforms -->
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.utilities</string>
+</dict>
+</plist>
