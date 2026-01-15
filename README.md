@@ -1,7 +1,15 @@
 # screenshot-auto-renamer
 
-Screenshot Auto Renamer is a utility tat automatically renames your screenshot filenames as more descriptive.
+`screenshot-auto-renamer` is a utility that will intelligently name your
+screenshots filenames automatically, using on device Apple Intelligence.                 
 
+## Documentation
+
+See detailed notes in the [`docs/` folder](./docs/).
+
+- [Foundation Models](./docs/foundation-models.md)
+- [Vision Framework](./docs/vision-framework.md)
+- [On-Device Intelligence](./docs/on-device-intelligence.md)
 
 ## Compile and run the Swift application
 
