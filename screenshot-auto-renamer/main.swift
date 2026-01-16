@@ -72,7 +72,7 @@ func startWatching(path: String) {
 }
 
 if CommandLine.arguments.count < 2 {
-    print("Usage: ScreenshotWatcher <path>")
+    print("Usage: screenshot-auto-renamer <directory-to-watch>")
     exit(1)
 }
 
