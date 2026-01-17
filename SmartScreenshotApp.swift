@@ -19,7 +19,7 @@ class ScreenshotListener {
     
     func startListening() {
         Task {
-            print("1. SmartScreenshotApp is now Active in MenueBar")
+            print("1. SmartScreenshotApp is now Active in Menu Bar")
             for await url in ScreenshotStream() {
                 await processScreenshot(url)
             }
