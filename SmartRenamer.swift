@@ -32,7 +32,7 @@ actor SmartRenamer {
         
         let analysis = await extractVisualContext(from: url)
         
-        let prompt = await String(format: Config.filenamePromptTemplate, analysis)
+        let prompt = String(format: Config.filenamePromptTemplate, analysis)
         
         let session = LanguageModelSession()
         let response = try await session.respond(to: prompt)
@@ -52,7 +52,7 @@ actor SmartRenamer {
         let textRequest = VNRecognizeTextRequest()
         textRequest.recognitionLevel = .accurate
         textRequest.usesLanguageCorrection = false
-        textRequest.recognitionLanguages = await Config.recognitionLanguages
+        textRequest.recognitionLanguages = Config.recognitionLanguages
         
         let classifyRequest = VNClassifyImageRequest()
         
