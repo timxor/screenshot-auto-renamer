@@ -10,9 +10,19 @@ import Vision
 import CoreImage
 import FoundationModels
 
+private enum Config {
+    nonisolated static let filenamePromptTemplate = """
+        [Task] Generate a concise, snake_case filename.
+        [Context] %@
+        [Rules] Max 5 words. Snake_case. No extension. Output ONLY the filename.
+        """
+    
+    nonisolated static let recognitionLanguages = ["en-US"]
+}
+
 actor SmartRenamer {
     
-    private let model = SystemLanguageModel.default
+    private let model = SystemLanguageModel(guardrails: .permissiveContentTransformations)
     
     func generateSmartName(for url: URL) async throws -> String {
         
@@ -22,11 +32,7 @@ actor SmartRenamer {
         
         let analysis = await extractVisualContext(from: url)
         
-        let prompt = """
-        [Task] Generate a concise, snake_case filename.
-        [Context] \(analysis)
-        [Rules] Max 5 words. Snake_case. No extension. Output ONLY the filename.
-        """
+        let prompt = await String(format: Config.filenamePromptTemplate, analysis)
         
         let session = LanguageModelSession()
         let response = try await session.respond(to: prompt)
@@ -45,14 +51,17 @@ actor SmartRenamer {
         
         let textRequest = VNRecognizeTextRequest()
         textRequest.recognitionLevel = .accurate
+        textRequest.usesLanguageCorrection = false
+        textRequest.recognitionLanguages = await Config.recognitionLanguages
+        
         let classifyRequest = VNClassifyImageRequest()
         
         do {
-            
             let handler = VNImageRequestHandler(ciImage: image)
             try handler.perform([textRequest, classifyRequest])
             
-            let text = textRequest.results?.prefix(4)
+            let text = textRequest.results?
+                .prefix(4)
                 .compactMap { $0.topCandidates(1).first?.string }
                 .joined(separator: " ") ?? ""
             
