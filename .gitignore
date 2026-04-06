@@ -1,4 +1,22 @@
 # Xcode
+
+
+
+xcuserdata/
+*.xcuserstate
+
+
+
+
+
+
+
+
+
+
+
+
+
 #
 # Build products
 build/

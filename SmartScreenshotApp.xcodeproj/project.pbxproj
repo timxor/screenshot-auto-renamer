@@ -6,22 +6,22 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		426119782F19DFBB006C2535 /* FileOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426119742F19DFBB006C2535 /* FileOps.swift */; };
-		426119792F19DFBB006C2535 /* SmartRenamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426119762F19DFBB006C2535 /* SmartRenamer.swift */; };
-		4261197A2F19DFBB006C2535 /* ScreenshotStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426119752F19DFBB006C2535 /* ScreenshotStream.swift */; };
-		4261197B2F19DFBB006C2535 /* SmartScreenshotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426119772F19DFBB006C2535 /* SmartScreenshotApp.swift */; };
-		4261197C2F19DFBB006C2535 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 426119732F19DFBB006C2535 /* Assets.xcassets */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		426119732F19DFBB006C2535 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		426119742F19DFBB006C2535 /* FileOps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileOps.swift; sourceTree = "<group>"; };
-		426119752F19DFBB006C2535 /* ScreenshotStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotStream.swift; sourceTree = "<group>"; };
-		426119762F19DFBB006C2535 /* SmartRenamer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartRenamer.swift; sourceTree = "<group>"; };
-		426119772F19DFBB006C2535 /* SmartScreenshotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartScreenshotApp.swift; sourceTree = "<group>"; };
 		42709B612F19A33000110260 /* SmartScreenshotApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartScreenshotApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		DAEF339A2F83D3B4003296D7 /* Sources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		DAEF33A02F83D3CE003296D7 /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		42709B5E2F19A33000110260 /* Frameworks */ = {
@@ -37,12 +37,9 @@
 		42709B582F19A33000110260 = {
 			isa = PBXGroup;
 			children = (
-				426119732F19DFBB006C2535 /* Assets.xcassets */,
-				426119742F19DFBB006C2535 /* FileOps.swift */,
-				426119752F19DFBB006C2535 /* ScreenshotStream.swift */,
-				426119762F19DFBB006C2535 /* SmartRenamer.swift */,
-				426119772F19DFBB006C2535 /* SmartScreenshotApp.swift */,
 				42709B622F19A33000110260 /* Products */,
+				DAEF339A2F83D3B4003296D7 /* Sources */,
+				DAEF33A02F83D3CE003296D7 /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +65,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				DAEF339A2F83D3B4003296D7 /* Sources */,
+				DAEF33A02F83D3CE003296D7 /* Resources */,
 			);
 			name = SmartScreenshotApp;
 			packageProductDependencies = (
@@ -116,7 +117,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4261197C2F19DFBB006C2535 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,10 +127,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				426119782F19DFBB006C2535 /* FileOps.swift in Sources */,
-				426119792F19DFBB006C2535 /* SmartRenamer.swift in Sources */,
-				4261197A2F19DFBB006C2535 /* ScreenshotStream.swift in Sources */,
-				4261197B2F19DFBB006C2535 /* SmartScreenshotApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
